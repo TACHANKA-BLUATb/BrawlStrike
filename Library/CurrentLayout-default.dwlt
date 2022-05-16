@@ -72,7 +72,7 @@ MonoBehaviour:
     y: 0
     width: 1366
     height: 725
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &4
 MonoBehaviour:
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 578, y: 492}
   m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 120
+  controlID: 129
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -247,7 +247,7 @@ MonoBehaviour:
   - {fileID: 17}
   - {fileID: 13}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 4
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -428,9 +428,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -24.051968, y: -18.055252, z: 11.2174015}
+    m_Target: {x: 0.43779027, y: -27.221794, z: 18.515305}
     speed: 2
-    m_Value: {x: -24.051968, y: -18.055252, z: 11.2174015}
+    m_Value: {x: 0.43779027, y: -27.221794, z: 18.515305}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -476,13 +476,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.78
   m_Rotation:
-    m_Target: {x: 0.33186674, y: -0.46288702, z: 0.1922251, w: 0.7991576}
+    m_Target: {x: 0.491316, y: 0.0026143766, z: -0.0014728261, w: 0.8709778}
     speed: 2
-    m_Value: {x: 0.33186617, y: -0.46288624, z: 0.19222477, w: 0.7991563}
+    m_Value: {x: 0.49131528, y: 0.0026143729, z: -0.001472824, w: 0.87097657}
   m_Size:
-    m_Target: 56.22163
+    m_Target: 27.947802
     speed: 2
-    m_Value: 56.22163
+    m_Value: 27.947802
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -536,8 +536,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: a4370000
-      m_LastClickedID: 0
+      m_SelectedIDs: f2360000
+      m_LastClickedID: 14066
       m_ExpandedIDs: 66fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -603,17 +603,17 @@ MonoBehaviour:
     m_Folders:
     - Assets/Scripts
   m_ViewMode: 1
-  m_StartGridSize: 40
+  m_StartGridSize: 61
   m_LastFolders:
   - Assets/Scripts
-  m_LastFoldersGridSize: 40
+  m_LastFoldersGridSize: 61
   m_LastProjectPath: D:\game create\BrawlStrike
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a4370000
-    m_LastClickedID: 14244
+    m_SelectedIDs: 94370000
+    m_LastClickedID: 14228
     m_ExpandedIDs: 0000000086370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 74470000ca480000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -695,7 +695,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 40
+    m_GridSize: 61
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
 --- !u!114 &17
@@ -726,7 +726,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -92496
+  m_LastSelectedObjectID: 14066
 --- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -827,4 +827,4 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 100

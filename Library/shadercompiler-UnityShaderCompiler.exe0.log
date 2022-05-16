@@ -1,3 +1,2 @@
 Base path: 'C:/Programs/Editor/Data', plugins path 'C:/Programs/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
-Cmd: shutdown

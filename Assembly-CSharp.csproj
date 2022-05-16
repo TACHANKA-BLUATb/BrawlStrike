@@ -40,6 +40,7 @@
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\MouseFollow.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\PlayerMovementTest.cs" />
      <Compile Include="Assets\Scripts\Shooting.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Programs\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>

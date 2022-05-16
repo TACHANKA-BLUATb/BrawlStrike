@@ -9,8 +9,7 @@ protected Rigidbody myBody;
 protected Transform player;
 private Vector3 TempPos;
 
-private float MoveForce = 15;
-private float JumpForce = 11;
+private float MoveForce = 8f;
 private float MovementX;
 private float MovementZ;
 float x = 0;
