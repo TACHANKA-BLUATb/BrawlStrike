@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovementTest : MonoBehaviour
 {
 protected Rigidbody myBody;
-protected Transform player;
 private Vector3 TempPos;
 
 private float MoveForce = 7f;
@@ -16,7 +15,6 @@ float z = 0;
 
 void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
         myBody = GetComponent<Rigidbody>();
     }
 

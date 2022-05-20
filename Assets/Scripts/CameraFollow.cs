@@ -6,6 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
 private Transform player;
 private Vector3 TempPos;
+
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform; 
@@ -13,9 +14,6 @@ private Vector3 TempPos;
 
     void Update()
     {
-        if (!player)
-            return;
-
     TempPos = transform.position;
 
     TempPos.x = player.position.x;
