@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-protected Transform player;
+protected Transform shooter;
 private Rigidbody rb;
 
 private float BulletSpeed = 70f;
@@ -13,15 +13,15 @@ string hitObject;
 
     void Awake()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        shooter = GameObject.FindWithTag("Shooter").transform;
     }
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
-        transform.rotation = player.rotation;
-        transform.position = player.position + transform.right * 2;
+        transform.rotation = shooter.rotation;
+        transform.position = shooter.position + transform.forward * 2;
 
         StartCoroutine(DestroyBullet());
     }
@@ -29,7 +29,7 @@ string hitObject;
 
     void FixedUpdate()
     {
-        rb.velocity = (transform.right * BulletSpeed);
+        rb.velocity = (transform.forward * BulletSpeed);
     }
 
     void OnCollisionEnter(UnityEngine.Collision hit)

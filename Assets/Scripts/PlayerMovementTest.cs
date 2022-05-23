@@ -10,8 +10,6 @@ private Vector3 TempPos;
 private float MoveForce = 7f;
 private float MovementX;
 private float MovementZ;
-float x = 0;
-float z = 0;
 
 void Start()
     {

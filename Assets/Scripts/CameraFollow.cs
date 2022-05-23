@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-private Transform player;
+private Transform target;
 private Vector3 TempPos;
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform; 
+        target = GameObject.FindWithTag("CameraTarget").transform; 
     }
 
     void Update()
     {
     TempPos = transform.position;
 
-    TempPos.x = player.position.x;
-    TempPos.z = player.position.z -7;
+    TempPos.x = target.position.x;
+    TempPos.z = target.position.z -7;
 
     transform.position = TempPos;
     }
