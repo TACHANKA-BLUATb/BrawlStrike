@@ -23,7 +23,25 @@ ModelImporter:
     second: Armature|start run
   - first:
       74: -4274770991410265338
-    second: Armature|Walking
+    second: Walking
+  - first:
+      74: 9056625290057023601
+    second: hit 1
+  - first:
+      74: 4975242491127639010
+    second: hit 2
+  - first:
+      74: 6363498514777800299
+    second: hit 3
+  - first:
+      74: -3100369314251171874
+    second: Idle
+  - first:
+      74: 6200578666267062213
+    second: run
+  - first:
+      74: -5004619597698742301
+    second: start run
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -85,7 +103,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|hit 1
+      name: hit 1
       takeName: Armature|hit 1
       internalID: 0
       firstFrame: 0
@@ -114,7 +132,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|hit 2
+      name: hit 2
       takeName: Armature|hit 2
       internalID: 0
       firstFrame: 0
@@ -143,7 +161,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|hit 3
+      name: hit 3
       takeName: Armature|hit 3
       internalID: 0
       firstFrame: 0
@@ -172,7 +190,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Idle
+      name: Idle
       takeName: Armature|Idle
       internalID: 0
       firstFrame: 0
@@ -201,7 +219,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|run
+      name: run
       takeName: Armature|run
       internalID: 0
       firstFrame: 0
@@ -230,7 +248,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|start run
+      name: start run
       takeName: Armature|start run
       internalID: 0
       firstFrame: 0
@@ -259,7 +277,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Walking
+      name: Walking
       takeName: Armature|Walking
       internalID: 0
       firstFrame: 0
