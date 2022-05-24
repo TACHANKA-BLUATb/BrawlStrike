@@ -11,24 +11,24 @@ private float MoveForce = 7f;
 private float MovementX;
 private float MovementZ;
 
-void Start()
+    void Start()
     {
         myBody = GetComponent<Rigidbody>();
     }
 
-void Update()
+    void Update()
     {
         PlayerMoveKeyboard();
     }
 
-protected void PlayerMoveKeyboard()
-{
-	MovementX = Input.GetAxisRaw("Horizontal");
-    MovementZ = Input.GetAxisRaw("Vertical");
-	myBody.velocity = (transform.right * MovementZ + transform.forward * -MovementX) * MoveForce;
-    if ((MovementX != 0) && (MovementZ != 0))
+    protected void PlayerMoveKeyboard()
     {
-        myBody.velocity = (transform.right * MovementZ + transform.forward * -MovementX) * (MoveForce - 2);
+    	MovementX = Input.GetAxisRaw("Horizontal");
+        MovementZ = Input.GetAxisRaw("Vertical");
+	    myBody.velocity = (transform.right * MovementZ + transform.forward * -MovementX) * MoveForce;
+        if ((MovementX != 0) && (MovementZ != 0))
+        {
+            myBody.velocity = (transform.right * MovementZ + transform.forward * -MovementX) * (MoveForce - 2);
+        }
     }
-}
 }

@@ -12,13 +12,13 @@ private float MovementX;
 private float MovementZ;
 
 
-void Update()
+    void Update()
     {
         PlayerMoveKeyboard();
         RotateCharacter(RotationVector);
     }
 
-protected void PlayerMoveKeyboard()
+    protected void PlayerMoveKeyboard()
     {
 	    MovementX = Input.GetAxisRaw("Horizontal");
         MovementZ = Input.GetAxisRaw("Vertical");

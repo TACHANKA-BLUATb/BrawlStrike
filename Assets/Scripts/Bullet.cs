@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
 
 protected Transform shooter;
+protected Transform aim;
 private Rigidbody rb;
 
 private float BulletSpeed = 70f;
@@ -14,13 +15,14 @@ string hitObject;
     void Awake()
     {
         shooter = GameObject.FindWithTag("Shooter").transform;
+        aim = GameObject.FindWithTag("RotatableTarget").transform;
     }
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
-        transform.rotation = shooter.rotation;
+        transform.rotation = aim.rotation;
         transform.position = shooter.position + transform.forward * 2;
 
         StartCoroutine(DestroyBullet());
