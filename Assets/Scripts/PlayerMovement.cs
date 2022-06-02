@@ -1,42 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Network network;
 
-private Vector3 RotationVector;
+    private float MoveForce = 8f;
+    private float MovementX;
+    private float MovementZ;
 
-private float MoveForce = 8f;
-private float MovementX;
-private float MovementZ;
+    private Vector3 RotationVector;
 
-
-    void Update()
+    private void Update()
     {
-        PlayerMoveKeyboard();
+        PlayerwMoveKeyboard();
         RotateCharacter(RotationVector);
     }
 
-    protected void PlayerMoveKeyboard()
+    protected void PlayerwMoveKeyboard()
     {
-	    MovementX = Input.GetAxisRaw("Horizontal");
+        MovementX = Input.GetAxisRaw("Horizontal");
         MovementZ = Input.GetAxisRaw("Vertical");
 
         if (MovementX != 0 && MovementZ != 0)
-            MoveForce = 6f;            
+            MoveForce = 6f;
         else
             MoveForce = 8f;
-        
-	    transform.position += new Vector3(MovementX, 0, MovementZ) * Time.deltaTime * MoveForce;
-        
-        RotationVector = new Vector3(MovementX, 0, MovementZ);
 
+        var vector = new Vector3(MovementX, 0, MovementZ) * Time.deltaTime * MoveForce;
+
+        var isPlayerMove = (MovementX != 0) | (MovementZ != 0);
+
+        if (network.status && isPlayerMove) network.sendMessage(vector);
+        //transform.position += vector;
     }
+
     public void RotateCharacter(Vector3 _direction)
     {
-        Vector3 targetForward = Vector3.RotateTowards(transform.forward, _direction.normalized, 10f * Time.deltaTime,.1f);
-        Quaternion _newRotation = Quaternion.LookRotation(targetForward);
-        transform.rotation = _newRotation;
+        var targetForward = Vector3.RotateTowards(transform.forward, _direction.normalized, 10f * Time.deltaTime, .1f);
+        var _newRotation = Quaternion.LookRotation(targetForward);
+        //transform.rotation = _newRotation;
     }
 }

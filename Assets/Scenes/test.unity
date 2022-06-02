@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1289,6 +1289,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4127576282709214562, guid: d36542c171b99e44cbe5ae63076176e0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7269905714208327074, guid: d36542c171b99e44cbe5ae63076176e0,
         type: 3}
       propertyPath: m_Name
@@ -1399,7 +1404,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7503715421947456739, guid: d36542c171b99e44cbe5ae63076176e0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d36542c171b99e44cbe5ae63076176e0, type: 3}
 --- !u!1 &1252497360
 GameObject:
@@ -1927,6 +1933,51 @@ Transform:
   m_Father: {fileID: 324798210}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1816666475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1816666476}
+  - component: {fileID: 1816666477}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Spawner
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1816666476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816666475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.755304, y: -1.933238, z: -15.798911}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1816666477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816666475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65802160ba9e851469552feaffd4e6f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  networkPlayer: {fileID: 0}
+  currentPlayer: {fileID: 0}
 --- !u!1 &1908756276
 GameObject:
   m_ObjectHideFlags: 0
@@ -2147,6 +2198,51 @@ Transform:
   m_Father: {fileID: 324798210}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1957469103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1957469105}
+  - component: {fileID: 1957469104}
+  m_Layer: 0
+  m_Name: Network
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1957469104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957469103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a991bb1301c6401eb75c36587fcd07ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: 0
+  spawner: {fileID: 1816666477}
+--- !u!4 &1957469105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957469103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.492199, y: 2.0706978, z: -18.889948}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2139400950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,6 +2389,16 @@ PrefabInstance:
       propertyPath: Health
       value: 
       objectReference: {fileID: 1516592711}
+    - target: {fileID: 7503715421947456739, guid: d36542c171b99e44cbe5ae63076176e0,
+        type: 3}
+      propertyPath: network
+      value: 
+      objectReference: {fileID: 1957469104}
+    - target: {fileID: 7503715421947456739, guid: d36542c171b99e44cbe5ae63076176e0,
+        type: 3}
+      propertyPath: spawner
+      value: 
+      objectReference: {fileID: 1816666477}
     - target: {fileID: 8045738004050353944, guid: d36542c171b99e44cbe5ae63076176e0,
         type: 3}
       propertyPath: m_RootOrder
