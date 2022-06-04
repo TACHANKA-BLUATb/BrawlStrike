@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Network network;
+    public NetworkHandler network;
+
+    public MouseFollow _follow;
 
     private float MoveForce = 8f;
     private float MovementX;
@@ -31,13 +34,25 @@ public class PlayerMovement : MonoBehaviour
         var isPlayerMove = (MovementX != 0) | (MovementZ != 0);
 
         if (network.status && isPlayerMove) network.sendMessage(vector);
-        //transform.position += vector;
+        transform.position += vector;
     }
 
     public void RotateCharacter(Vector3 _direction)
     {
-        var targetForward = Vector3.RotateTowards(transform.forward, _direction.normalized, 10f * Time.deltaTime, .1f);
+        /*var targetForward = Vector3.RotateTowards(transform.forward, _direction.normalized, 10f * Time.deltaTime, .1f);
         var _newRotation = Quaternion.LookRotation(targetForward);
-        //transform.rotation = _newRotation;
+        transform.rotation = _newRotation;*/
+        if (_follow != null)
+        {
+            transform.rotation = Quaternion.AngleAxis(transform.rotation.y, _follow.GetRotationVector());
+
+            var quaternion = _follow.GetRotation();
+
+            var yAngle = quaternion.y;
+            var yAngleCurrent = transform.rotation.y;
+
+            if (Math.Abs(yAngle) - Math.Abs(yAngleCurrent) > 0.8) transform.rotation = quaternion;
+            if (Math.Abs(yAngleCurrent) - Math.Abs(yAngle) > 0.8) transform.rotation = quaternion;
+        }
     }
 }

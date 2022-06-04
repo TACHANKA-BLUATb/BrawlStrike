@@ -1,23 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Network;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Network : MonoBehaviour
+public class NetworkHandler : MonoBehaviour
 {
     // Флаг статуса веб сокет соединения
     public bool status;
     public GameObject networkPlayer;
 
-    private readonly string ip = "localhost";
+    private readonly string ip = "localhost"; //"212.109.219.49";
     private readonly float MoveForce = 8f;
 
     // Типо словарь ключ - значение, <id игрока, сам игрок>
     private readonly Dictionary<string, GameObject>
         players = new Dictionary<string, GameObject>(); // Сразу создается пустой экземпляр 
 
-    private readonly string port = "5000";
+    private readonly string port = "5000"; //88
 
     // Основное веб сокет соединение
     private WebSocket _webSocketConnection;
@@ -34,12 +35,16 @@ public class Network : MonoBehaviour
     private IEnumerator Start()
     {
         status = false;
-        yield return HttpConnection("http://" + ip + ":" + port + "/"); // Корневой маршрут сервера
+        var httpHandler = new HttpHandler("http://" + ip + ":" + port + "/"); // Корневой маршрут сервера
+        yield return httpHandler.HttpConnection; //HttpConnection("http://" + ip + ":" + port + "/");
+        webSocketId = httpHandler.WebSocketId;
+
         // Прошел http запрос на получание айдишника 
         Debug.Log(webSocketId);
 
         _webSocketConnection =
-            new WebSocket(new Uri("ws://localhost:5000/" + webSocketId)); // Корневой маршрут сервера + /айдишник
+            new WebSocket(new Uri("ws://" + ip + ":" + port + "/" +
+                                  webSocketId)); // Корневой маршрут сервера + /айдишник
         yield return StartCoroutine(_webSocketConnection.Connect());
         // Произошел веб сокет коннект
 
@@ -102,7 +107,7 @@ public class Network : MonoBehaviour
     // Вектор с сервера приходит в формате строки коорды разделены символом пробела
     // Также прокинул айдишник для нахождения нужного игрока
     // Пример: "1 0.132523523 0.123124124"
-    private NetworkEntity GetNetworkPlayerData(string obj)
+    private NetworkVectorEntity GetNetworkPlayerData(string obj)
     {
         var array = obj.Split(' '); // Сплитом разбиваем строку на массив по символу пробела
 
@@ -115,7 +120,7 @@ public class Network : MonoBehaviour
         Debug.Log(z);
         Debug.Log(id);
 
-        var entity = new NetworkEntity();
+        var entity = new NetworkVectorEntity();
         entity.id = id;
         entity.vector = new Vector3(x, 0, z);
 

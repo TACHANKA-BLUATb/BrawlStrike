@@ -1,20 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MouseFollow : MonoBehaviour {
+public class MouseFollow : MonoBehaviour
+{
+    private Quaternion _rotation;
 
-    Vector3 RotationVector;
+    private Vector3 RotationVector;
 
-    void Update () 
+    private void Update()
     {
         MouseRotation();
     }
 
-    private void MouseRotation() 
+    private void MouseRotation()
     {
         var direction = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         var angle = -Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.up);
+        _rotation = Quaternion.AngleAxis(angle, Vector3.up);
+        transform.rotation = _rotation;
+    }
+
+    public Quaternion GetRotation()
+    {
+        return _rotation;
+    }
+
+    public Vector3 GetRotationVector()
+    {
+        return RotationVector;
     }
 }
