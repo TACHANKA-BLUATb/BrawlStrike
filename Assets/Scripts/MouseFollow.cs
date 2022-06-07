@@ -18,14 +18,5 @@ public class MouseFollow : MonoBehaviour
         _rotation = Quaternion.AngleAxis(angle, Vector3.up);
         transform.rotation = _rotation;
     }
-
-    public Quaternion GetRotation()
-    {
-        return _rotation;
-    }
-
-    public Vector3 GetRotationVector()
-    {
-        return RotationVector;
-    }
+    
 }
