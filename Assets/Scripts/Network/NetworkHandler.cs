@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Network;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class NetworkHandler : MonoBehaviour
 {
@@ -11,119 +10,86 @@ public class NetworkHandler : MonoBehaviour
     public bool status;
     public GameObject networkPlayer;
 
-    private readonly string ip = "localhost"; //"212.109.219.49";
-    private readonly float MoveForce = 8f;
+    private readonly string ip = "212.109.219.49"; //"212.109.219.49";
 
     // Типо словарь ключ - значение, <id игрока, сам игрок>
     private readonly Dictionary<string, GameObject>
         players = new Dictionary<string, GameObject>(); // Сразу создается пустой экземпляр 
 
-    private readonly string port = "5000"; //88
+    private readonly string port = "88"; //88
 
-    // Основное веб сокет соединение
-    private WebSocket _webSocketConnection;
-
-    // Счетчик подключений
-    private int counter;
-
-    // Объект http запроса
-    private UnityWebRequest webRequest;
+    private string _currentPlayerId;
 
     // Айдишник веб сокет сервера, который получаем ответом на http запрос
     private string webSocketId;
+
+    public WebSocketHandler getWsHandler { get; private set; }
 
     private IEnumerator Start()
     {
         status = false;
         var httpHandler = new HttpHandler("http://" + ip + ":" + port + "/"); // Корневой маршрут сервера
-        yield return httpHandler.HttpConnection; //HttpConnection("http://" + ip + ":" + port + "/");
-        webSocketId = httpHandler.WebSocketId;
+        yield return httpHandler.HttpConnection;
+
+        var connectionData = httpHandler.ConnectionDataResult.Split(' ');
+
+        _currentPlayerId = connectionData[0];
+        webSocketId = connectionData[1];
 
         // Прошел http запрос на получание айдишника 
-        Debug.Log(webSocketId);
+        Debug.Log(webSocketId + "      " + _currentPlayerId);
 
-        _webSocketConnection =
-            new WebSocket(new Uri("ws://" + ip + ":" + port + "/" +
-                                  webSocketId)); // Корневой маршрут сервера + /айдишник
-        yield return StartCoroutine(_webSocketConnection.Connect());
-        // Произошел веб сокет коннект
-
-        // В качестве айдишника игрока пока юзаем счетчик подключений, он также закеширован на сервере
-        counter++;
-
-        // Пихаем плеера в Dictionary по строковому ключу id
-        players.Add(counter.ToString(), Instantiate(networkPlayer, Vector3.zero, Quaternion.identity));
+        getWsHandler = WebSocketHandler.CreateInstance(new Uri("ws://" + ip + ":" + port + "/" + webSocketId));
+        yield return StartCoroutine(getWsHandler.WebSocketConnection); // Произошел веб сокет коннект
 
         status = true;
     }
 
     private void Update()
     {
-        if (_webSocketConnection == null) return;
+        if (getWsHandler == null) return;
+
+        var wsConnection = getWsHandler.getWsConnection;
+        if (wsConnection == null) return;
 
         // Отслеживает сообщение с сервера
-        var message = _webSocketConnection.RecvString();
-        if (message != null)
+        var message = wsConnection.RecvString();
+        if (message != null) ApplyGameMessage(message);
+    }
+
+    public string currentPlayerId()
+    {
+        return _currentPlayerId;
+    }
+
+    private void ApplyGameMessage(string messageData)
+    {
+        // Сообщение типа ",displayName:id:0 10:0:true"
+
+        var playersMessage = messageData.Split(';');
+
+        for (var i = 1; i < playersMessage.Length; i++)
         {
-            Debug.Log(message);
+            var data = playersMessage[i].Split(':');
+            //var displayName = data[0];
+            var id = data[1];
 
-            // Из сообщения получаем данные
-            // Для сущности сообщения сделал класс NetworkEntity
-            var entity = GetNetworkPlayerData(message); // Метод получения сущности сообщения
+            if (id == _currentPlayerId) continue;
 
-            var player = players[entity.id]; // Достаем игрока из словаря
-            player.transform.position += entity.vector; // И ебенем ему вектор
+            if (!players.ContainsKey(id))
+                players.Add(id, Instantiate(networkPlayer, Vector3.zero, Quaternion.identity));
+
+            var vcStr = data[2];
+            //var rtStr = data[3];
+
+            var vcArr = vcStr.Split(' ');
+
+            // Приводим строковые значения к float
+            var x = float.Parse(vcArr[0]);
+            var z = float.Parse(vcArr[1]);
+
+            var player = players[id]; // Достаем игрока из словаря
+            player.transform.position = new Vector3(x, 0, z); // И ебенем ему вектор
         }
-    }
-
-
-    // Кидаем вектор на сервер, айдишник пока не кидаем, генерируем его на сервере аналогично как здесь
-    public void sendMessage(Vector3 vector)
-    {
-        var jsonObject = new JSONObject(JSONObject.Type.OBJECT);
-
-        // Создаем json объект и добавляем в него 2 поля с коордами по x и z
-        jsonObject.AddField("x", vector.x.ToString());
-        jsonObject.AddField("z", vector.z.ToString());
-
-        _webSocketConnection.SendString(jsonObject.ToString());
-    }
-
-    // Запрос на получение айдишника веб сокет сервера
-    private IEnumerator HttpConnection(string uri)
-    {
-        var form = new WWWForm();
-        // Костыль эмитации отправки запроса из лоби
-        form.AddField("players", "1");
-
-        using (webRequest = UnityWebRequest.Post(uri, form))
-        {
-            yield return webRequest.SendWebRequest();
-            // получаем айдишник из ответа на запрос
-            webSocketId = webRequest.downloadHandler.text;
-        }
-    }
-
-    // Вектор с сервера приходит в формате строки коорды разделены символом пробела
-    // Также прокинул айдишник для нахождения нужного игрока
-    // Пример: "1 0.132523523 0.123124124"
-    private NetworkVectorEntity GetNetworkPlayerData(string obj)
-    {
-        var array = obj.Split(' '); // Сплитом разбиваем строку на массив по символу пробела
-
-        // Приводим строковые значения к float
-        var x = float.Parse(array[1]);
-        var z = float.Parse(array[2]);
-
-        var id = array[0];
-        Debug.Log(x);
-        Debug.Log(z);
-        Debug.Log(id);
-
-        var entity = new NetworkVectorEntity();
-        entity.id = id;
-        entity.vector = new Vector3(x, 0, z);
-
-        return entity;
     }
 }

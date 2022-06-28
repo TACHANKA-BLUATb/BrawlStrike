@@ -1,24 +1,22 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    private readonly float BulletSpeed = 70f;
+    protected Transform aim;
+    private string hitObject;
+    private Rigidbody rb;
 
-protected Transform shooter;
-protected Transform aim;
-private Rigidbody rb;
+    protected Transform shooter;
 
-private float BulletSpeed = 70f;
-string hitObject;
-
-    void Awake()
+    private void Awake()
     {
         shooter = GameObject.FindWithTag("Shooter").transform;
         aim = GameObject.FindWithTag("RotatableTarget").transform;
     }
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
 
@@ -29,18 +27,18 @@ string hitObject;
     }
 
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        rb.velocity = (transform.forward * BulletSpeed);
+        rb.velocity = transform.forward * BulletSpeed;
     }
 
-    void OnCollisionEnter(UnityEngine.Collision hit)
+    private void OnCollisionEnter(Collision hit)
     {
-        hitObject = hit.gameObject.tag;  
+        hitObject = hit.gameObject.tag;
         Destroy(gameObject);
     }
 
-    IEnumerator DestroyBullet()
+    private IEnumerator DestroyBullet()
     {
         yield return new WaitForSeconds(5);
         Destroy(gameObject);

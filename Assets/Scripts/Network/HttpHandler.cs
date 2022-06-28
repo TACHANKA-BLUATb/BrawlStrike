@@ -19,7 +19,7 @@ namespace Network
         }
 
         // Геттер айдишника
-        public string WebSocketId { get; private set; }
+        public string ConnectionDataResult { get; private set; } // ownerId: string serverId: string;
 
         // Геттер метода коннекта
         public IEnumerator HttpConnection => _HttpConnection();
@@ -29,13 +29,15 @@ namespace Network
         {
             var form = new WWWForm();
             // Костыль эмитации отправки запроса из лоби
-            form.AddField("players", "1");
+            form.AddField("displayName", "EBLAN");
 
             using (webRequest = UnityWebRequest.Post(_uri, form))
             {
                 yield return webRequest.SendWebRequest();
+
                 // получаем айдишник из ответа на запрос
-                WebSocketId = webRequest.downloadHandler.text;
+                // ownerId: string serverId: string;
+                ConnectionDataResult = webRequest.downloadHandler.text;
             }
         }
     }

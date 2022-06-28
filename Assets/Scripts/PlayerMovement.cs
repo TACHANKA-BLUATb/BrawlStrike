@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         PlayerwMoveKeyboard();
-        RotateCharacter(RotationVector);
+        //RotateCharacter(RotationVector);
     }
 
     protected void PlayerwMoveKeyboard()
@@ -33,8 +33,11 @@ public class PlayerMovement : MonoBehaviour
 
         var isPlayerMove = (MovementX != 0) | (MovementZ != 0);
 
-        if (network.status && isPlayerMove) network.sendMessage(vector);
         transform.position += vector;
+
+        if (network != null && network.getWsHandler != null && network.getWsHandler.getWsConnection != null &&
+            isPlayerMove)
+            network.getWsHandler.sendMessage(transform.position, transform.rotation, network.currentPlayerId());
     }
 
     public void RotateCharacter(Vector3 _direction)
