@@ -57,8 +57,10 @@
      <Compile Include="Assets\Scripts\Looking.cs" />
      <Compile Include="Assets\Scripts\MouseFollow.cs" />
      <Compile Include="Assets\Scripts\Network\HttpHandler.cs" />
+     <Compile Include="Assets\Scripts\Network\MessageEntitys\GameMessageEntity.cs" />
      <Compile Include="Assets\Scripts\Network\MessageEntitys\NetworkVectorEntity.cs" />
      <Compile Include="Assets\Scripts\Network\NetworkHandler.cs" />
+     <Compile Include="Assets\Scripts\Network\WebSocketHandler.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovementTest.cs" />
      <Compile Include="Assets\Scripts\Shooting.cs" />
