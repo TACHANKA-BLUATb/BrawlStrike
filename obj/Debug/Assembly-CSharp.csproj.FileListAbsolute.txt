@@ -1,0 +1,2 @@
+C:\personalDevelopment\BlenderTest\obj\Debug\Assembly-CSharp.csproj.AssemblyReference.cache
+C:\personalDevelopment\BlenderTest\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
