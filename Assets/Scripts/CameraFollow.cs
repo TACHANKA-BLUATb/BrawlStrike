@@ -9,7 +9,7 @@ private Vector3 TempPos;
 
     void Start()
     {
-        target = GameObject.FindWithTag("CameraTarget").transform; 
+        target = GameObject.FindWithTag("CameraTarget").transform;
     }
 
     void Update()
@@ -17,7 +17,8 @@ private Vector3 TempPos;
     TempPos = transform.position;
 
     TempPos.x = target.position.x;
-    TempPos.z = target.position.z -7;
+    TempPos.z = target.position.z - 10;
+    TempPos.y = target.position.y + 18;
 
     transform.position = TempPos;
     }

@@ -50,10 +50,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Librarys\JSONObject\JSONObject.cs" />
-     <Compile Include="Assets\Librarys\JSONObject\JSONTemplates.cs" />
-     <Compile Include="Assets\Librarys\JSONObject\VectorTemplates.cs" />
-     <Compile Include="Assets\Librarys\WebSocket.cs" />
+     <Compile Include="Assets\Scripts\BrokenSquare.cs" />
      <Compile Include="Assets\Scripts\Bullet.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\GotShotCheker.cs" />
@@ -65,54 +62,37 @@
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovementTest.cs" />
      <Compile Include="Assets\Scripts\Shooting.cs" />
-     <None Include="Assets\Librarys\JSONObject\readme.txt" />
+     <Compile Include="Assets\Scripts\ShotComponents.cs" />
+     <Compile Include="Assets\Scripts\Square.cs" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Burst">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+ <HintPath>C:/Users/wario/OneDrive/Рабочий стол/Unity/BrawlStrike/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Burst.Editor">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
+ <HintPath>C:/Users/wario/OneDrive/Рабочий стол/Unity/BrawlStrike/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Animation.Rigging">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.Animation.Rigging.dll</HintPath>
+ <HintPath>C:/Users/wario/OneDrive/Рабочий стол/Unity/BrawlStrike/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/wario/OneDrive/Рабочий стол/Unity/BrawlStrike/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/wario/OneDrive/Рабочий стол/Unity/BrawlStrike/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Mathematics">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Animation.Rigging.Editor">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.Animation.Rigging.Editor.dll</HintPath>
+ <HintPath>C:/Users/wario/OneDrive/Рабочий стол/Unity/BrawlStrike/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Mathematics.Editor">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+ <HintPath>C:/Users/wario/OneDrive/Рабочий стол/Unity/BrawlStrike/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/wario/OneDrive/Рабочий стол/Unity/BrawlStrike/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PlasticSCM.Editor">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+ <HintPath>C:/Users/wario/OneDrive/Рабочий стол/Unity/BrawlStrike/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/wario/OneDrive/Рабочий стол/Unity/BrawlStrike/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.39f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -296,12 +276,6 @@
  </Reference>
  <Reference Include="UnityEditor">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.39f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
- </Reference>
- <Reference Include="websocket-sharp">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Assets/Librarys/websocket-sharp.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Burst.Unsafe">
- <HintPath>C:/Users/wario/OneDrive/Рабочий стол/BrawlStrike/Library/PackageCache/com.unity.burst@1.1.1/Unity.Burst.Unsafe.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.39f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

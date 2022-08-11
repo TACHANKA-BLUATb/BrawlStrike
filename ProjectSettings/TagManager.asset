@@ -4,13 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Legs
-  - Shooter
+  - Broken
+  - Square
   - CameraTarget
+  - Body
   - RotatableTarget
-  - Hitable
+  - Shooter
+  - Smoke
   - Bullet
-  - Spawner
+  - Fire
   layers:
   - Default
   - TransparentFX

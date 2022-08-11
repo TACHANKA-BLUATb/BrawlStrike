@@ -3,23 +3,32 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public NetworkHandler network;
+    //public NetworkHandler network;
 
-    public MouseFollow _follow;
+    public Transform body;
+    public Transform target;
 
     private float MoveForce = 8f;
     private float MovementX;
     private float MovementZ;
+    private float mouseRotationSpeed = 5f;
+    private float keyboardRotationSpeed = 5f;
 
     private Vector3 RotationVector;
 
+    private void Start()
+    {
+        body = GameObject.FindWithTag("Body").transform;
+        target = GameObject.FindWithTag("RotatableTarget").transform;
+    }
+
     private void Update()
     {
-        PlayerwMoveKeyboard();
+        PlayerMoveKeyboard();
         RotateCharacter(RotationVector);
     }
 
-    protected void PlayerwMoveKeyboard()
+    protected void PlayerMoveKeyboard()
     {
         MovementX = Input.GetAxisRaw("Horizontal");
         MovementZ = Input.GetAxisRaw("Vertical");
@@ -33,26 +42,46 @@ public class PlayerMovement : MonoBehaviour
 
         var isPlayerMove = (MovementX != 0) | (MovementZ != 0);
 
-        if (network.status && isPlayerMove) network.sendMessage(vector);
+        //if (network.status && isPlayerMove) network.sendMessage(vector);
         transform.position += vector;
+
+        RotationVector = new Vector3(MovementX, 0, MovementZ);
     }
 
     public void RotateCharacter(Vector3 _direction)
     {
-        /*var targetForward = Vector3.RotateTowards(transform.forward, _direction.normalized, 10f * Time.deltaTime, .1f);
-        var _newRotation = Quaternion.LookRotation(targetForward);
-        transform.rotation = _newRotation;*/
-        if (_follow != null)
+        var Angle = Quaternion.Angle(transform.rotation, body.rotation);
+
+        if ((Angle > 98) && (Angle < 102))
         {
-            transform.rotation = Quaternion.AngleAxis(transform.rotation.y, _follow.GetRotationVector());
-
-            var quaternion = _follow.GetRotation();
-
-            var yAngle = quaternion.y;
-            var yAngleCurrent = transform.rotation.y;
-
-            if (Math.Abs(yAngle) - Math.Abs(yAngleCurrent) > 0.8) transform.rotation = quaternion;
-            if (Math.Abs(yAngleCurrent) - Math.Abs(yAngle) > 0.8) transform.rotation = quaternion;
+            mouseRotationSpeed = 0.01f;
+            keyboardRotationSpeed = 0.01f;
         }
+        else
+            mouseRotationSpeed = 5f;
+            keyboardRotationSpeed = 5f;
+
+        if (Angle > 100)
+        {
+            Vector3 direction = target.transform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, mouseRotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            Vector3 targetForward = Vector3.RotateTowards(transform.forward, _direction.normalized, keyboardRotationSpeed * Time.deltaTime,.1f);
+            Quaternion _newRotation = Quaternion.LookRotation(targetForward);
+            transform.rotation = _newRotation;
+        }
+        
+        //  if ((_follow != null) & (MovementX == 0) & (MovementZ == 0))
+        //  {
+        //     transform.rotation = Quaternion.AngleAxis(transform.rotation.y, _follow.GetRotationVector())
+        //     var quaternion = _follow.GetRotation();
+        //     var yAngle = quaternion.y;
+        //     var yAngleCurrent = transform.rotation.y;
+
+        //     if (Math.Abs(yAngle) - Math.Abs(yAngleCurrent) > 0.7) transform.rotation = quaternion;
+        //     if (Math.Abs(yAngleCurrent) - Math.Abs(yAngle) > 0.7) transform.rotation = quaternion;
     }
 }
